@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* index.css */
+
+/* Primary Colors */
+.text-primary {
+  color: #1d4ed8;
+}
+
+.bg-primary {
+  background-color: #1d4ed8;
+}
+
+.bg-primary-light {
+  background-color: #3b82f6;
+}
+
+/* Accent (Green) */
+.text-accent {
+  color: #10b981;
+}
+
+.bg-accent {
+  background-color: #10b981;
+}
+
+/* Gradient for Headings */
+.text-gradient {
+  background: linear-gradient(to right, #1d4ed8, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Neutral Colors */
+.text-neutral {
+  color: #111827;
+}
+
+.bg-neutral-light {
+  background-color: #f9fafb;
+}
+
+/* Outline Button Hover */
+.btn-outline-hover:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* subtle overlay */
+  color: #111827; /* dark text to match theme */
+  transition: all 0.3s ease-in-out;
+}
