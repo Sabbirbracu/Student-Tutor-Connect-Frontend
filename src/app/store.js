@@ -4,11 +4,12 @@ import { baseApi } from "../services/baseApi";
 
 export const store = configureStore({
   reducer: {
-    [baseApi.reducerPath]: baseApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer, // RTK Query API reducer
     auth: authReducer,
   },
-  middleware: (getDefault) => getDefault().concat(baseApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
 
-export const RootState = () => store.getState();
+export const RootState = store.getState;
 export const AppDispatch = store.dispatch;
