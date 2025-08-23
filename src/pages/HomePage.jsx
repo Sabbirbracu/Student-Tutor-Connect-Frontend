@@ -6,9 +6,23 @@ import FeaturesSection from "../components/sections/FeaturesSection.jsx";
 import Hero from "../components/sections/Hero.jsx";
 import Modal from "../components/ui/Modal.jsx";
 
+import toast from "react-hot-toast";
+
+// Components
 const HomePage = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+
+  const handleLoginSuccess = (user) => {
+    toast.success(`Welcome back, ${user.name}!`);
+    // TODO: optionally redirect to dashboard based on user.role
+  };
+
+  const handleSignupSuccess = (user) => {
+    toast.success(`Signup successful! Welcome, ${user.name}!`);
+    setIsSignupOpen(false); // close modal
+    // Keep user on Home page
+  };
 
   return (
     <div>
@@ -19,10 +33,7 @@ const HomePage = () => {
       />
 
       <div className="pt-16">
-        {/* Hero Section */}
         <Hero />
-
-        {/* Features Section */}
         <FeaturesSection />
       </div>
 
@@ -33,7 +44,14 @@ const HomePage = () => {
         title="Sign In"
         size="max-w-md"
       >
-        <LoginForm onSubmit={(data) => console.log("Login Data:", data)} />
+        <LoginForm
+          onClose={() => setIsLoginOpen(false)}
+          onSuccess={handleLoginSuccess}
+          onSwitchToSignup={() => {
+            setIsLoginOpen(false);
+            setIsSignupOpen(true);
+          }}
+        />
       </Modal>
 
       {/* Signup Modal */}
@@ -43,11 +61,17 @@ const HomePage = () => {
         title="Sign Up"
         size="max-w-md"
       >
-        <SignupForm onSubmit={(data) => console.log("Signup Data:", data)} />
+        <SignupForm
+          onClose={() => setIsSignupOpen(false)}
+          onSuccess={handleSignupSuccess}
+          onSwitchToLogin={() => {
+            setIsSignupOpen(false);
+            setIsLoginOpen(true);
+          }}
+        />
       </Modal>
     </div>
   );
 };
 
 export default HomePage;
-
