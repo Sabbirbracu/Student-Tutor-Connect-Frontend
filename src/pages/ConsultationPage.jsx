@@ -1,39 +1,3 @@
-// import { useGetCoursesQuery } from "../features/courses/coursesApi";
-// import { useCreateSlotMutation, useGetMySlotsQuery } from "../features/slot/slotApi";
-
-// import SlotForm from "../components/ConsultationDashboard/SlotForm";
-// import SlotList from "../components/ConsultationDashboard/SlotList";
-
-// const ConsultationPage = () => {
-//   const { data: courses } = useGetCoursesQuery();
-//   const { data: slots, refetch } = useGetMySlotsQuery(); // ✅ fetch tutor's own slots
-//   const [createSlot] = useCreateSlotMutation();
-
-//   const handleCreateSlot = async (slotData) => {
-//     try {
-//       await createSlot(slotData).unwrap();
-//       refetch(); // refresh slot list after creation
-//     } catch (error) {
-//       console.error("Failed to create slot:", error);
-//     }
-//   };
-
-//   return (
-//     <div className="max-w-4xl mx-auto mt-10">
-//       {/* Form to add slot */}
-//       <SlotForm courses={courses || []} onCreate={handleCreateSlot} />
-
-//       {/* List of slots */}
-//       <div className="mt-6">
-//         <h2 className="text-xl font-semibold mb-3">Your Consultation Slots</h2>
-//         <SlotList slots={slots || []} />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ConsultationPage;
-
 import { useGetCoursesQuery } from "../features/courses/coursesApi";
 import { useCreateSlotMutation, useGetMySlotsQuery } from "../features/slot/slotApi";
 

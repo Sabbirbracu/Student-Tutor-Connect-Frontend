@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ReviewCard from "../components/cards/reviewCard";
+import ReportModal from "../components/ui/ReportModal"; // <-- import ReportModal
 import ReviewModal from "../components/ui/ReviewModal";
 import { useGetTutorReviewsQuery, useGetUserByIdQuery } from "../services/baseApi";
 
 const Profile = () => {
   const { id } = useParams();
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false); // <-- new state
 
   // Fetch the user by ID
   const { data: user, isLoading, error } = useGetUserByIdQuery(id);
@@ -17,11 +19,6 @@ const Profile = () => {
     isLoading: reviewsLoading,
     error: reviewsError,
   } = useGetTutorReviewsQuery(user?._id, { skip: !user || user.role !== "studentTutor" });
-
-  console.log("Profile.jsx - URL id:", id);
-  console.log("Profile.jsx - user data:", user);
-  console.log("Profile.jsx - loading:", isLoading, "error:", error);
-  console.log("Profile.jsx - reviews data:", reviewsData);
 
   if (isLoading) return <p className="text-center mt-10">Loading profile...</p>;
   if (error) return <p className="text-center mt-10 text-red-500">Failed to fetch profile.</p>;
@@ -57,7 +54,10 @@ const Profile = () => {
             </button>
           )}
 
-          <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+            onClick={() => setShowReportModal(true)} // <-- open report modal
+          >
             Report
           </button>
         </div>
@@ -89,6 +89,13 @@ const Profile = () => {
           tutor={user}
         />
       )}
+
+      {/* Report Modal */}
+      <ReportModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        reportedUser={user} // <-- pass the user to report
+      />
     </section>
   );
 };

@@ -109,9 +109,8 @@ const Sidebar = () => {
   const menuItems = {
     admin: [
       { name: "Dashboard", path: "/dashboard/admin" },
-      { name: "See Report", path: "/see-report" },
       { name: "Courses", path: "/courses" },
-      { name: "Assign ST", path: "/assign-st" },
+    
     ],
     student: [
       { name: "Dashboard", path: "/dashboard/student" },
@@ -121,7 +120,6 @@ const Sidebar = () => {
     studentTutor: [
       { name: "Dashboard", path: "/dashboard/tutor" },
       { name: "Consultation", path: "/dashboard/tutor/consultation" },
-      { name: "Profile", path: "/dashboard/tutor/profile" },
     ],
 
   };

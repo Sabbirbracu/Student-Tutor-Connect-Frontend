@@ -103,6 +103,7 @@ import CourseCard from "../components/cards/CourseCard";
 import AssignTutorModal from "../components/ui/AssignTutorModal";
 import Button from "../components/ui/Button";
 import CreateCourseModal from "../components/ui/CreateCourseModal";
+import { useDeleteCourseMutation } from "../features/courses/coursesApi";
 import {
   useAssignTutorMutation,
   useGetCoursesQuery,
@@ -142,6 +143,19 @@ const Courses = () => {
     }
   };
 
+  const [deleteCourse] = useDeleteCourseMutation();
+
+  const handleDeleteCourse = async (id) => {
+    try {
+      await deleteCourse(id).unwrap();
+      alert("Course deleted successfully!");
+    } catch (err) {
+      console.error("Failed to delete course:", err);
+      alert("Failed to delete course. Try again.");
+    }
+  };
+
+
   return (
     <div className="p-6">
       {/* Header */}
@@ -179,7 +193,9 @@ const Courses = () => {
               course={course}
               onAssignTutor={handleAssignTutor}
               onViewDetails={() => {}}
+              onDeleteCourse={handleDeleteCourse}
             />
+
           ))
         ) : (
           <p className="text-gray-500 col-span-full text-center">No courses found.</p>

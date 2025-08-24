@@ -13,8 +13,8 @@ import StudentTutorDashboard from "./pages/StudentTutorDashboard.jsx";
 import DashboardLayout from "./components/layout/DashboardLayout.jsx";
 
 // Profile Page
-import Profile from "./pages/Profile.jsx"; // New Profile component
 import ConsultationPage from "./pages/ConsultationPage.jsx";
+import Profile from "./pages/Profile.jsx"; // New Profile component
 
 /**
  * RequireAuth
