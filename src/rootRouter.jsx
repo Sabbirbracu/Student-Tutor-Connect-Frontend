@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Courses from "./pages/Courses.jsx";
-
-// Public pages
+import FindST from "./pages/FindSt.jsx";
 import HomePage from "./pages/HomePage.jsx";
 
-// Dashboard placeholders
+// Dashboards
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import StudentDashboard from "./pages/StudentDashboard.jsx";
 import StudentTutorDashboard from "./pages/StudentTutorDashboard.jsx";
@@ -13,9 +12,11 @@ import StudentTutorDashboard from "./pages/StudentTutorDashboard.jsx";
 // Layout
 import DashboardLayout from "./components/layout/DashboardLayout.jsx";
 
+// Profile Page
+import Profile from "./pages/Profile.jsx"; // New Profile component
+
 /**
  * RequireAuth
- * Redirects to home with optional login modal trigger if user is not authenticated
  */
 const RequireAuth = ({ children }) => {
   const token = useSelector((state) => state.auth.token);
@@ -30,7 +31,6 @@ const RequireAuth = ({ children }) => {
 
 /**
  * RequireRole
- * Checks if current user role is allowed for this route
  */
 const RequireRole = ({ roles = [], children }) => {
   const role = useSelector((state) => state.auth.user?.role);
@@ -48,7 +48,7 @@ const RootRouter = () => {
       {/* Public route */}
       <Route path="/" element={<HomePage />} />
 
-      {/* Protected routes with sidebar layout */}
+      {/* Protected routes with Dashboard layout */}
       <Route
         element={
           <RequireAuth>
@@ -83,6 +83,14 @@ const RootRouter = () => {
             </RequireRole>
           }
         />
+        <Route
+          path="/dashboard/student/findST"
+          element={
+            <RequireRole roles={["student"]}>
+              <FindST />
+            </RequireRole>
+          }
+        />
 
         {/* Student Tutor routes */}
         <Route
@@ -93,9 +101,12 @@ const RootRouter = () => {
             </RequireRole>
           }
         />
+
+        {/* Dynamic Profile route (For any authenticated user) */}
+        <Route path="/profile/:id" element={<Profile />} />
       </Route>
 
-      {/* Fallback 404 redirect */}
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

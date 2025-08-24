@@ -19,7 +19,7 @@ const Sidebar = () => {
     ],
     student: [
       { name: "Dashboard", path: "/dashboard/student" },
-      { name: "Find ST", path: "/find-st" },
+      { name: "Find ST", path: "/dashboard/student/findST" },
     ],
     studentTutor: [{ name: "Dashboard", path: "/dashboard/tutor" }],
   };
