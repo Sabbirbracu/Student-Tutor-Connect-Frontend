@@ -78,8 +78,10 @@ const FindST = () => {
         isOpen={!!selectedTutor}
         onClose={() => setSelectedTutor(null)}
         tutor={selectedTutor}
+        course={selectedCourse} // ← add this
         onRequestExtraSlot={handleRequestExtraSlot}
       />
+
 
       {/* Extra Slot Request Modal */}
       <ExtraSlotRequestModal

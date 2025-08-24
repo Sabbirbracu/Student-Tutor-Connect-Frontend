@@ -34,7 +34,7 @@ const Profile = () => {
       {/* Profile Image */}
       <div className="flex flex-col items-center text-center">
         <img
-          src={avatar || "https://via.placeholder.com/150"}
+          src={avatar || "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fprofile-placeholder&psig=AOvVaw37m2nP5bL8-r7vp65s53it&ust=1756114139051000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNDjjY6Ro48DFQAAAAAdAAAAABAE"}
           alt="Profile"
           className="w-32 h-32 rounded-full object-cover border-4 border-gray-200 shadow-md"
         />

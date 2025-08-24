@@ -14,6 +14,7 @@ import DashboardLayout from "./components/layout/DashboardLayout.jsx";
 
 // Profile Page
 import Profile from "./pages/Profile.jsx"; // New Profile component
+import ConsultationPage from "./pages/ConsultationPage.jsx";
 
 /**
  * RequireAuth
@@ -98,6 +99,26 @@ const RootRouter = () => {
           element={
             <RequireRole roles={["studentTutor"]}>
               <StudentTutorDashboard />
+            </RequireRole>
+          }
+        />
+
+        {/* Student Tutor routes */}
+
+        <Route
+          path="/dashboard/tutor/consultation"
+          element={
+            <RequireRole roles={["studentTutor"]}>
+              < ConsultationPage />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/dashboard/tutor/profile"
+          element={
+            <RequireRole roles={["studentTutor"]}>
+              {/* Placeholder page for Tutor Profile */}
+              <div className="p-6">Tutor Profile Page - Under Construction</div>
             </RequireRole>
           }
         />
